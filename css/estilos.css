@@ -1,0 +1,342 @@
+/* ═══════════════════════════════════════════════
+   css/estilos.css
+   Estilos para index.html y juego.html
+   ODS 12 — Juego de Reciclaje para niños
+═══════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap');
+
+:root {
+    --verde:    #10b981;
+    --azul:     #3b82f6;
+    --amarillo: #f59e0b;
+    --rojo:     #ef4444;
+    --fondo:    #f0fdf4;
+    --oscuro:   #064e3b;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--fondo);
+    min-height: 100vh;
+    color: #1e293b;
+}
+
+/* ══════════════════════════════════════════════
+   PÁGINA DE LOGIN (index.html)
+══════════════════════════════════════════════ */
+
+.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    background: linear-gradient(135deg, #d1fae5 0%, #bfdbfe 100%);
+}
+
+.login-logo {
+    font-size: 4rem;
+    margin-bottom: 8px;
+    animation: bounce 1.5s infinite alternate;
+}
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-10px); }
+}
+
+.login-titulo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--oscuro);
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.login-subtitulo {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.login-card {
+    background: white;
+    border-radius: 20px;
+    padding: 28px;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+/* Tabs login / registro */
+.tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #e2e8f0;
+    background: transparent;
+    border-radius: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: #94a3b8;
+    transition: all 0.2s;
+}
+
+.tab-btn.activo {
+    background: var(--verde);
+    border-color: var(--verde);
+    color: white;
+}
+
+/* Formularios */
+.form-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.form-grupo input {
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-grupo input:focus {
+    border-color: var(--verde);
+}
+
+.form-grupo input::placeholder {
+    color: #cbd5e1;
+}
+
+.btn-principal {
+    width: 100%;
+    padding: 14px;
+    background: var(--verde);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 4px;
+}
+
+.btn-principal:hover {
+    background: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+}
+
+#mensaje {
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-top: 12px;
+    display: none;
+}
+
+.ods-badge {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.ods-badge span {
+    background: #d1fae5;
+    color: var(--oscuro);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+}
+
+/* ══════════════════════════════════════════════
+   PÁGINA DEL JUEGO (juego.html)
+══════════════════════════════════════════════ */
+
+.juego-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(180deg, #e0f2fe 0%, #d1fae5 100%);
+    min-height: 100vh;
+    padding-bottom: 20px;
+}
+
+/* Header del juego */
+.juego-header {
+    width: 100%;
+    background: var(--oscuro);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+
+.juego-header h1 {
+    color: #a7f3d0;
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+#nombre-jugador {
+    color: #6ee7b7;
+    font-size: 0.85rem;
+}
+
+.btn-salir {
+    background: rgba(255,255,255,0.1);
+    color: #fca5a5;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.btn-salir:hover { background: rgba(239,68,68,0.3); }
+
+/* HUD */
+.hud {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hud-item {
+    background: white;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--oscuro);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+/* Canvas */
+canvas {
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    cursor: none;
+    max-width: 95vw;
+}
+
+/* Pantallas superpuestas */
+.pantalla {
+    position: absolute;
+    inset: 0;
+    background: rgba(6, 78, 59, 0.92);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+}
+
+.pantalla h2 {
+    color: #a7f3d0;
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    font-weight: 900;
+    line-height: 1.4;
+}
+
+.pantalla p {
+    color: #d1fae5;
+    font-size: 0.88rem;
+    line-height: 1.7;
+}
+
+.pantalla .emoji-grande {
+    font-size: 3.5rem;
+    animation: bounce 1s infinite alternate;
+}
+
+.btn-juego {
+    background: var(--amarillo);
+    color: var(--oscuro);
+    border: none;
+    padding: 14px 32px;
+    border-radius: 14px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 16px rgba(245,158,11,0.4);
+}
+
+.btn-juego:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 24px rgba(245,158,11,0.5);
+}
+
+.btn-rojo {
+    background: var(--rojo);
+    box-shadow: 0 4px 16px rgba(239,68,68,0.4);
+}
+.btn-rojo:hover { box-shadow: 0 6px 24px rgba(239,68,68,0.5); }
+
+.pistas {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 0.8rem;
+    color: #a7f3d0;
+    line-height: 2;
+}
+
+/* Aviso rotación móvil */
+#aviso-rotacion {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--oscuro);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    z-index: 999;
+    text-align: center;
+    padding: 20px;
+}
+
+#aviso-rotacion p {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #a7f3d0;
+    line-height: 2;
+}
+
+@media (max-width: 600px) and (orientation: portrait) {
+    #aviso-rotacion { display: flex; }
+}

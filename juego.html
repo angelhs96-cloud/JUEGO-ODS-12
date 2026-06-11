@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reciclaje ODS 12 — ¡A Jugar!</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="juego-page">
+
+    <!-- Aviso de rotación para móvil -->
+    <div id="aviso-rotacion">
+        <div style="font-size:3rem; animation:bounce 1s infinite alternate;">📱</div>
+        <p>Gira tu dispositivo<br>a posición<br>HORIZONTAL 🔄</p>
+    </div>
+
+    <!-- Header -->
+    <header class="juego-header">
+        <h1>♻️ Reciclaje ODS 12</h1>
+        <span id="nombre-jugador">👤 Jugador</span>
+        <div style="display:flex; gap:8px;">
+            <button id="btn-pausa" class="btn-salir" onclick="btnTogglePausa()"
+                    style="color:#fcd34d; border-color:rgba(252,211,77,0.3);">
+                ⏸ Pausa
+            </button>
+            <button class="btn-salir" onclick="btnCerrarSesion()">🚪 Salir</button>
+        </div>
+    </header>
+
+    <!-- HUD -->
+    <div class="hud">
+        <div class="hud-item" id="hud-nivel">Nivel 1</div>
+        <div class="hud-item" id="hud-puntaje">⭐ 0</div>
+        <div class="hud-item" id="hud-vidas">❤️❤️❤️</div>
+        <div class="hud-item" id="hud-aciertos">0 / 6</div>
+    </div>
+
+    <!-- Canvas + Pantallas superpuestas -->
+    <div style="position:relative;">
+
+        <canvas id="gameCanvas" width="460" height="500"></canvas>
+
+        <!-- Pantalla: Inicio del nivel -->
+        <div class="pantalla" id="pantalla-inicio">
+            <div class="emoji-grande">♻️</div>
+            <h2>¡Aprende a Reciclar!</h2>
+            <div class="pistas">
+                🟡 <strong>Plástico:</strong> botellas, vasos, bolsas<br>
+                🔵 <strong>Papel:</strong> periódicos, cajas<br>
+                🟢 <strong>Orgánico:</strong> frutas y verduras
+            </div>
+            <p>Mueve el mouse para guiar<br>cada objeto al tacho correcto 🎯</p>
+            <button class="btn-juego" onclick="btnIniciar()">▶ ¡Empezar!</button>
+        </div>
+
+        <!-- Pantalla: Nivel completado -->
+        <div class="pantalla" id="pantalla-nivel">
+            <div class="emoji-grande">🎉</div>
+            <h2 id="nivel-completo-num">¡Nivel completado!</h2>
+            <p id="nivel-siguiente-num">Siguiente nivel...</p>
+            <button class="btn-juego" onclick="btnSiguienteNivel()">▶ Siguiente nivel</button>
+        </div>
+
+        <!-- Pantalla: Game Over -->
+        <div class="pantalla" id="pantalla-gameover">
+            <div style="font-size:3rem;">😢</div>
+            <h2>¡Se acabaron las vidas!</h2>
+            <p>
+                Nivel: <strong id="go-nivel"></strong><br>
+                Puntaje: <strong id="go-puntaje" style="color:#f59e0b;"></strong>
+            </p>
+            <p style="font-size:0.8rem; opacity:0.8;">
+                Tu progreso fue guardado.<br>¡Cuando vuelvas a iniciar sesión<br>continuarás desde aquí! 💪
+            </p>
+            <button class="btn-juego btn-rojo" onclick="btnReintentar()">🔄 Reintentar</button>
+        </div>
+
+        <!-- Pantalla: Juego completo -->
+        <div class="pantalla" id="pantalla-completo">
+            <div class="emoji-grande">🏆</div>
+            <h2>¡Felicitaciones!<br>¡Completaste el juego!</h2>
+            <p>
+                Puntaje total: <strong id="puntaje-final" style="color:#f59e0b; font-size:1.3rem;"></strong><br><br>
+                Ahora eres un verdadero<br>
+                <strong>Héroe del Reciclaje 🌍</strong>
+            </p>
+            <!-- Ranking MySQL -->
+            <div class="pistas" style="width:100%; text-align:left; white-space:pre-line; font-size:0.75rem;">
+                🏅 Top 10 Global:\n<span id="ranking-lista">Cargando...</span>
+            </div>
+            <button class="btn-juego" onclick="btnIniciar()">🔄 Jugar de nuevo</button>
+        </div>
+
+        <!-- Pantalla: MENÚ DE PAUSA ← NUEVO -->
+        <div class="pantalla" id="pantalla-pausa">
+            <div style="font-size:2.5rem;">⏸️</div>
+            <h2>Juego Pausado</h2>
+
+            <!-- Info del estado actual -->
+            <div class="pistas" style="width:100%; text-align:left;">
+                📊 Nivel: <strong id="pausa-nivel"></strong><br>
+                ⭐ Puntaje: <strong id="pausa-puntaje"></strong><br>
+                🎯 Aciertos: <strong id="pausa-aciertos"></strong>
+            </div>
+
+            <p style="font-size:0.75rem; opacity:0.7;">
+                ✅ Progreso guardado automáticamente
+            </p>
+
+            <!-- Botones del menú -->
+            <button class="btn-juego" onclick="reanudarJuego()">
+                ▶ Continuar jugando
+            </button>
+            <button class="btn-juego" onclick="reiniciarNivel()"
+                    style="background:#3b82f6; box-shadow:0 4px 16px rgba(59,130,246,0.4);">
+                🔄 Reiniciar este nivel
+            </button>
+            <button class="btn-juego btn-rojo" onclick="guardarYSalir()">
+                🚪 Guardar y salir
+            </button>
+
+            <p style="font-size:0.72rem; opacity:0.6;">
+                Presiona ESC para continuar
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Scripts en orden: db → api → juego -->
+    <script src="javascript/db.js"></script>
+    <script src="javascript/api.js"></script>
+    <script src="javascript/juego.js"></script>
+</body>
+</html>

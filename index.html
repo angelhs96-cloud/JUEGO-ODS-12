@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reciclaje ODS 12 — Iniciar Sesión</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="login-page">
+
+    <div class="login-logo">♻️</div>
+    <h1 class="login-titulo">¡Aprende a Reciclar!</h1>
+    <p class="login-subtitulo">ODS 12 — Producción y Consumo Responsable</p>
+
+    <div class="login-card">
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn activo" id="tab-login"    onclick="mostrarFormulario('login')">
+                🔑 Entrar
+            </button>
+            <button class="tab-btn"        id="tab-registro" onclick="mostrarFormulario('registro')">
+                ✏️ Registrarme
+            </button>
+        </div>
+
+        <!-- Formulario Login -->
+        <div id="form-login" style="display:flex; flex-direction:column;">
+            <div class="form-grupo">
+                <input type="text"     id="login-usuario"  placeholder="🧒 Tu usuario"      autocomplete="username">
+                <input type="password" id="login-password" placeholder="🔒 Tu contraseña"   autocomplete="current-password">
+            </div>
+            <button class="btn-principal" onclick="accionLogin()">¡Jugar! 🎮</button>
+        </div>
+
+        <!-- Formulario Registro -->
+        <div id="form-registro" style="display:none; flex-direction:column;">
+            <div class="form-grupo">
+                <input type="text"     id="reg-nombre"   placeholder="😊 Tu nombre">
+                <input type="text"     id="reg-usuario"  placeholder="🧒 Elige un usuario"  autocomplete="off">
+                <input type="password" id="reg-password" placeholder="🔒 Elige contraseña"  autocomplete="new-password">
+            </div>
+            <button class="btn-principal" onclick="accionRegistrar()">¡Crear cuenta! 🌱</button>
+        </div>
+
+        <!-- Mensaje de estado -->
+        <div id="mensaje"></div>
+
+    </div>
+
+    <div class="ods-badge">
+        <span>🌍 ODS 12 — Consumo Responsable</span>
+    </div>
+
+    <!-- Scripts: primero db.js, api.js, luego auth.js -->
+    <script src="javascript/db.js"></script>
+    <script src="javascript/api.js"></script>
+    <script src="javascript/auth.js"></script>
+</body>
+</html>
